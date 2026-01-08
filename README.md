@@ -10,11 +10,15 @@ These scripts assume certain libraries are installed, so running it in the suppl
 
 1. Clone the git archive from the directory on your machine where you want these files to reside:
 
+```
     git clone git@github.com:barriejc/faftp.git
+```
 
 2. cd to that directory, activate the venv, and install according to the requirements:
 
+```
     python3 -m venv virt
     source virt/bin/activate
     pip install --upgrade pip
     pip install -r requirements.txt
+```
