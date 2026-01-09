@@ -37,24 +37,6 @@ discount_factors = 1 / (1 + discount_rate) ** np.arange(0, len(cf_means))
 # Compute NPV for every simulation
 npvs = np.sum(cash_flows * discount_factors, axis=1)
 
-'''
-# Potentially Better NPV, but wrong dimension (10k vs 6 by 10k)
-# also sum vs np.sum depends on performance of lists vs arrays (not nec. respectively)
-# Use the above and figure it out later
-
-npvs = sum(cf / (1 + discount_rate ) ** t for t, cf in enumerate(cash_flows))
-
-# another option
-
-def npv(rate, cash_flows):
-    t = np.arange(len(cash_flows))
-    return np.sum(cash_flows / (1 + rate) ** t)
-
-npvs = np.array([
-    npv(discount_rate, cf) for cf in simulated_cf
-])
-'''
-
 risk_of_loss = np.mean(npvs < 0)
 
 # Plot results
@@ -85,19 +67,17 @@ print()
 
 print("Summary NPV Statistics Across All Years:")
 
-
 print(f"Mean NPV: {np.mean(npvs):,.0f}")
 print(f"Median NPV: {np.median(npvs):,.0f}")
 print(f"5th percentile NPV: {np.percentile(npvs, 5):,.0f}")
 print(f"95th percentile NPV: {np.percentile(npvs, 95):,.0f}")
-print(f"Risk of loss: {risk_of_loss:.2%}")
+print(f"Risk of loss: {risk_of_loss:.1%}")
 
-'''
-# or, for something other than 0:
+# or, find the probability of an NPV other than 0:
 target_npv = 50000
 prob_miss = np.mean(npvs < target_npv)
+print(f"Probability of NPV less than ${target_npv / 1e3}K: {prob_miss:.1%}")
 
-# expected loss
-'''
+# expected loss - NPV that is the mean of NPVs less than 0
 expected_loss = np.mean(npvs[npvs < 0])
 print(f"Expected loss: {expected_loss:.0f}")
