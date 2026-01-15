@@ -10,7 +10,7 @@ There are also exports to .xlsx and .ods here that may or may not work well. Imp
 
 ## Python
 
-These scripts assume certain libraries are installed, so running it in the supplied virtual environment is recommended unless you prefer to install them yourself.  
+These scripts assume certain libraries are installed, so running it in the supplied virtual environment is recommended unless you prefer to install them yourself. ==Note: if you plan to make changes and want to preserve them for youself, fork this repo first and then use your new fork URL in step 1 below instead.== 
 
 1. Clone the git archive from the directory on your machine where you want these files to reside:
 
